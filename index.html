@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAHEB | Your Ultimate Valentine's Partner</title>
+    <meta name="description"
+        content="Meet SAHEB — your ultimate Valentine's partner. Explore the bio, Valentine's week roadmap, skills, and connect.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+        <div class="loader-heart">❤️</div>
+        <div class="loader-text">Loading Love...</div>
+    </div>
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div id="scroll-progress"></div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container"></div>
+
+    <!-- BACK TO TOP -->
+    <button id="back-to-top" title="Back to top">↑</button>
+
+    <!-- BACKGROUNDS -->
+    <canvas id="heart-canvas"></canvas>
+    <video class="video-bg" autoplay muted loop playsinline preload="auto">
+        <source
+            src="https://drive.usercontent.google.com/download?export=download&confirm=t&id=1hMQFnQshOhlz_QMkQuDddZRQ0XS9H2yn"
+            type="video/mp4">
+    </video>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+            <span class="beating-heart" onclick="event.stopPropagation(); showSecret()">❤️</span>
+            <span>SAHEB</span>
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav id="nav-menu">
+            <a href="#home" class="active">Home</a>
+            <a href="#bio">Bio</a>
+            <a href="#week">Week</a>
+            <a href="#skills">Skills</a>
+            <a href="#connect">Connect</a>
+        </nav>
+    </header>
+
+    <!-- ==================== SECTION: HOME ==================== -->
+    <section id="home" class="content-section">
+        <div class="glass-card reveal-scale">
+            <h1 class="saheb-line" id="main-headline">
+                I am <span class="highlight">SAHEB</span> your next tripod to have perfect life on.
+            </h1>
+            <p id="visitor-greet"
+                style="font-style: italic; color: var(--warm-gold); margin-bottom: 2rem; text-align: center;">
+                Happy Valentine's Week, Beautiful! From your favorite partner. 💕
+            </p>
+
+            <div class="stats-grid stagger-children">
+                <div class="stat-item"><span class="stat-label">Personality</span>
+                    <div class="stat-val">Golden Retriever</div>
+                </div>
+                <div class="stat-item"><span class="stat-label">Handy Level</span>
+                    <div class="stat-val">Local Fix-it Legend</div>
+                </div>
+                <div class="stat-item"><span class="stat-label">Top Pro</span>
+                    <div class="stat-val">Clean UI & Zero Bugs</div>
+                </div>
+                <div class="stat-item"><span class="stat-label">Top Con</span>
+                    <div class="stat-val">Hoodie Thief</div>
+                </div>
+            </div>
+
+            <center>
+                <button class="pill-btn pill-btn-glow" onclick="sendRose()">Send Virtual Rose 🌹</button>
+            </center>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION: BIO ==================== -->
+    <section id="bio" class="content-section">
+        <div class="glass-card reveal">
+            <h1>🎯 About Me - SAHEB</h1>
+
+            <div class="bio-section reveal-left">
+                <h2>Who Am I?</h2>
+                <p>
+                    Hey there! I'm SAHEB, your perfect Valentine's partner and life companion. I'm not just another
+                    person—I'm a golden retriever in human form who brings consistent loyalty, enthusiasm, and genuine
+                    care to everything I do. Think of me as the tripod that keeps your life perfectly balanced and
+                    stable.
+                </p>
+            </div>
+
+            <div class="bio-section reveal-right">
+                <h2>My Core Traits</h2>
+                <div class="bio-grid stagger-children">
+                    <div class="bio-item">
+                        <h3>💛 Personality</h3>
+                        <p>Golden Retriever energy - loyal, friendly, and always ready to bring joy and support to those
+                            I care about.</p>
+                    </div>
+                    <div class="bio-item">
+                        <h3>🛠️ Handy Skills</h3>
+                        <p>College MVP for fixing things. Whether it's a technical issue or a broken heart, I can handle
+                            it with care and precision.</p>
+                    </div>
+                    <div class="bio-item">
+                        <h3>✨ Professional Touch</h3>
+                        <p>Clean UI design and zero bugs in my life philosophy. Everything I do is thoughtful, polished,
+                            and genuine.</p>
+                    </div>
+                    <div class="bio-item">
+                        <h3>🎩 Fun Confession</h3>
+                        <p>I'm a strategic hoodie thief - because sometimes warmth means borrowing what makes you feel
+                            cozy. 😄</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bio-section reveal-left">
+                <h2>What Makes Me Different?</h2>
+                <p>
+                    Unlike typical partners, I bring a unique blend of technical excellence and emotional intelligence.
+                    I don't just exist in your life—I enhance it. I'm the kind of person who:
+                </p>
+                <ul class="bio-list">
+                    <li>✅ Shows up consistently and reliably</li>
+                    <li>✅ Listens more than I talk</li>
+                    <li>✅ Solves problems instead of creating them</li>
+                    <li>✅ Celebrates your wins like they're my own</li>
+                    <li>✅ Brings laughter, warmth, and genuine connection</li>
+                </ul>
+            </div>
+
+            <div class="bio-section reveal">
+                <h2>My Philosophy</h2>
+                <p>
+                    A perfect relationship is like clean code - it's clear, efficient, and works seamlessly without
+                    unnecessary complications. I believe in transparency, loyalty, and showing up for the people who
+                    matter. Every moment with you is an investment, not a transaction.
+                </p>
+            </div>
+
+            <center style="margin-top: 3rem;">
+                <button class="pill-btn" onclick="sendMessage()">Let's Connect 💬</button>
+            </center>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION: WEEK ==================== -->
+    <section id="week" class="content-section">
+        <div class="glass-card reveal">
+            <h1>💕 Valentine's Week Roadmap</h1>
+            <p style="text-align: center; font-style: italic; color: var(--warm-gold); margin-bottom: 2rem;">
+                Seven days of love, starting with a rose, ending with a kiss. Here's our journey...
+            </p>
+
+            <div class="timer reveal-scale">
+                <h2>Time Until Valentine's Day 💌</h2>
+                <div id="vday-timer">Loading...</div>
+            </div>
+
+            <div class="timeline-container stagger-children">
+                <div class="day-card"
+                    onclick="showDayMessage('🌹 Rose Day — Feb 7', 'Where our story starts. A single rose symbolizes the beginning of something beautiful, the first spark of connection.')">
+                    <div class="day-number">📌</div>
+                    <div class="day-name">🌹 Rose Day</div>
+                    <div class="day-description">Feb 7 - Where our story starts</div>
+                </div>
+
+                <div class="day-card"
+                    onclick="showDayMessage('💍 Propose Day — Feb 8', 'Ready to commit? This is about asking to be part of your world, to build something meaningful together.')">
+                    <div class="day-number">2️⃣</div>
+                    <div class="day-name">💍 Propose Day</div>
+                    <div class="day-description">Feb 8 - Ready to commit?</div>
+                </div>
+
+                <div class="day-card"
+                    onclick="showDayMessage('🍫 Chocolate Day — Feb 9', 'Sweet as your smile. Chocolates taste better when shared with someone who makes your heart skip a beat.')">
+                    <div class="day-number">3️⃣</div>
+                    <div class="day-name">🍫 Chocolate Day</div>
+                    <div class="day-description">Feb 9 - Sweet as your smile</div>
+                </div>
+
+                <div class="day-card"
+                    onclick="showDayMessage('🧸 Teddy Day — Feb 10', 'Soft like my energy. A teddy bear is a warm embrace, a reminder that I am always here for you.')">
+                    <div class="day-number">4️⃣</div>
+                    <div class="day-name">🧸 Teddy Day</div>
+                    <div class="day-description">Feb 10 - Soft like my energy</div>
+                </div>
+
+                <div class="day-card"
+                    onclick="showDayMessage('🤝 Promise Day — Feb 11', 'No broken code, no broken hearts. I promise to be reliable, consistent, and genuinely invested in your happiness.')">
+                    <div class="day-number">5️⃣</div>
+                    <div class="day-name">🤝 Promise Day</div>
+                    <div class="day-description">Feb 11 - No broken hearts</div>
+                </div>
+
+                <div class="day-card"
+                    onclick="showDayMessage('🤗 Hug Day — Feb 12', 'I give the best hugs — the kind that make you feel like everything will be okay, like you are safe and valued.')">
+                    <div class="day-number">6️⃣</div>
+                    <div class="day-name">🤗 Hug Day</div>
+                    <div class="day-description">Feb 12 - I give the best ones</div>
+                </div>
+
+                <div class="day-card"
+                    onclick="showDayMessage('💋 Kiss Day — Feb 13', 'The final build before Valentine\'s Day. A kiss that seals all the promises we have made, the start of forever.')">
+                    <div class="day-number">7️⃣</div>
+                    <div class="day-name">💋 Kiss Day</div>
+                    <div class="day-description">Feb 13 - The final build</div>
+                </div>
+
+                <div class="day-card"
+                    onclick="showDayMessage('💝 Valentine\'s Day — Feb 14', 'The Grand Finale. All the roses, promises, chocolates, and hugs culminate in one perfect moment together. Forever starts now.')">
+                    <div class="day-number">💎</div>
+                    <div class="day-name">💝 Valentine's Day</div>
+                    <div class="day-description">Feb 14 - Forever Starts Here</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;" class="reveal">
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Ready to experience this magical week together?</p>
+                <button class="pill-btn pill-btn-glow" onclick="confirmJourney()">Start This Journey With Me ✨</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION: SKILLS ==================== -->
+    <section id="skills" class="content-section">
+        <div class="glass-card reveal">
+            <h1>⚙️ System Performance & Skills</h1>
+            <p style="text-align: center; font-style: italic; color: var(--warm-gold); margin-bottom: 2rem;">
+                What makes me the perfect partner? Check out my stats below...
+            </p>
+
+            <div class="skills-grid stagger-children">
+                <div class="skill-card">
+                    <h2>💙 Emotional Intelligence</h2>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Empathy & Understanding</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-1" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-1">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Active Listening</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-2" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-2">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Reliability Algorithm</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-3" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-3">0%</div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h2>🛠️ Technical Excellence</h2>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Problem Solving</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-4" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-4">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Fixing Things on Demand</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-5" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-5">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Clean Code (Life) Standards</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-6" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-6">0%</div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h2>💝 Romance & Connection</h2>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Romantic Gestures</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-7" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-7">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Commitment Strength</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-8" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-8">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Making You Feel Special</span>
+                        <div class="heart-bar">
+                            <div class="heart-fill" id="skill-9" style="width: 0%;"></div>
+                        </div>
+                        <div class="confidence-level" id="conf-9">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary reveal-scale">
+                <strong>Overall Compatibility Score:</strong> <span id="overall-score"
+                    style="color: var(--blush-pink); font-size: 1.3rem;">0%</span>
+                <p style="margin-top: 10px;">I'm built to be the perfect match for you. Every feature is optimized for
+                    your happiness.</p>
+            </div>
+
+            <center style="margin-top: 2rem;">
+                <button class="pill-btn" onclick="experienceMe()">Experience My Skills 💫</button>
+            </center>
+        </div>
+    </section>
+
+    <!-- ==================== SECTION: CONNECT ==================== -->
+    <section id="connect" class="content-section">
+        <div class="glass-card reveal">
+            <h1>💬 Let's Connect</h1>
+            <p style="text-align: center; font-style: italic; color: var(--warm-gold); margin-bottom: 2rem;">
+                Ready to slide into something special? Here's how to reach out...
+            </p>
+
+            <div class="connect-grid stagger-children">
+                <div class="connect-card" onclick="copyToClipboard('saheb.contact@email.com')">
+                    <div class="connect-icon">📧</div>
+                    <h3>Email Me</h3>
+                    <p>saheb.contact@email.com</p>
+                    <small style="color: var(--blush-pink);">Click to copy</small>
+                </div>
+
+                <div class="connect-card"
+                    onclick="showToast('💬 WhatsApp', 'Best way for quick chats and special moments! +91 XXXXXXXXXX', 4000)">
+                    <div class="connect-icon">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p>Quick messages & voice notes</p>
+                    <small style="color: var(--blush-pink);">For instant connection</small>
+                </div>
+
+                <div class="connect-card"
+                    onclick="showToast('📸 Instagram', 'Follow @saheb_official for daily moments!', 4000)">
+                    <div class="connect-icon">📸</div>
+                    <h3>Instagram</h3>
+                    <p>Follow my daily moments</p>
+                    <small style="color: var(--blush-pink);">@saheb_official</small>
+                </div>
+
+                <div class="connect-card"
+                    onclick="showToast('☎️ Call Me', 'Better hearing your voice than typing. Let\'s talk about us!', 4000)">
+                    <div class="connect-icon">☎️</div>
+                    <h3>Phone Call</h3>
+                    <p>Hear my voice directly</p>
+                    <small style="color: var(--blush-pink);">For real conversations</small>
+                </div>
+            </div>
+
+            <div class="contact-form reveal-scale">
+                <h2
+                    style="color: var(--blush-pink); margin-bottom: 20px; text-align: center; font-family: 'Playfair Display', serif;">
+                    Send Me a Message 💌</h2>
+                <form id="contact-form-el" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="What should I call you?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="How can I reach you?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me what's on your mind..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send My Heart 💕</button>
+                </form>
+            </div>
+
+            <div class="social-links reveal">
+                <p style="margin-bottom: 15px; font-size: 1.1rem;">Follow me on social media:</p>
+                <a href="#" class="social-link" title="Instagram">📸</a>
+                <a href="#" class="social-link" title="Twitter">𝕏</a>
+                <a href="#" class="social-link" title="Facebook">f</a>
+                <a href="#" class="social-link" title="Snapchat">😊</a>
+            </div>
+
+            <center style="margin-top: 3rem;" class="reveal">
+                <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">Or slide into my DMs:</p>
+                <button class="pill-btn insta-btn"
+                    onclick="showToast('📸 Instagram', 'Heading to my DMs! @saheb_official 🎬', 3000)">Let's Connect on
+                    Instagram 🎬</button>
+            </center>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
