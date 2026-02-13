@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAHEB | Your Ultimate Valentine's Partner</title>
+    <style>
+        :root {
+            --deep-red: #C8102E;
+            --blush-pink: #F9C2D1;
+            --rich-purple: #7A3DAF;
+            --warm-gold: #D4AF37;
+            --cream: #F7F3F0;
+            --glass: rgba(255, 255, 255, 0.12);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            scroll-behavior: smooth; 
+        }
+
+        body {
+            background-color: #0A0A0A;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* --- IMMERSIVE BACKGROUNDS --- */
+        #heart-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            object-fit: cover;
+            filter: brightness(0.3) saturate(1.2);
+        }
+
+        /* --- HEADER & LOGO --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--deep-red);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .beating-heart {
+            font-size: 2rem;
+            animation: heartbeat 1.2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--deep-red)); }
+            50% { transform: scale(1.2); filter: drop-shadow(0 0 20px var(--deep-red)); }
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover { 
+            color: var(--blush-pink); 
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+            margin-top: 60px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .saheb-line {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .highlight { 
+            color: var(--blush-pink); 
+            text-shadow: 0 0 15px var(--deep-red); 
+        }
+
+        /* --- SYSTEM STATS & ABOUT --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 20px;
+            border-left: 3px solid var(--deep-red);
+            text-align: left;
+        }
+
+        .stat-label { 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            color: var(--warm-gold); 
+        }
+        
+        .stat-val { 
+            font-size: 0.9rem; 
+            font-weight: bold; 
+        }
+
+        /* --- BUTTONS --- */
+        .pill-btn {
+            background: var(--deep-red);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(200, 16, 46, 0.4);
+            margin: 10px;
+            font-size: 1rem;
+        }
+
+        .pill-btn:hover { 
+            transform: scale(1.05); 
+            filter: brightness(1.2); 
+        }
+
+        /* --- CURSOR TRAIL --- */
+        .trail-heart {
+            position: absolute;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatUp 1.5s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-150px) scale(2); opacity: 0; }
+        }
+
+        /* --- ROMANTIC ROSE ANIMATIONS --- */
+        .romantic-rose {
+            position: fixed;
+            z-index: 2000;
+            pointer-events: none;
+            filter: drop-shadow(0 0 20px rgba(200, 16, 46, 0.8));
+        }
+
+        @keyframes roseBloom {
+            0% {
+                transform: translate(-50%, -50%) scale(0.3) rotateZ(0deg);
+                opacity: 0;
+                filter: drop-shadow(0 0 5px rgba(200, 16, 46, 0.5));
+            }
+            20% {
+                opacity: 1;
+                filter: drop-shadow(0 0 20px rgba(200, 16, 46, 0.8));
+            }
+            50% {
+                transform: translate(calc(-50% - 40px), calc(-50% - 60px)) scale(1.3) rotateZ(180deg);
+                filter: drop-shadow(0 0 30px rgba(249, 194, 209, 1));
+            }
+            80% {
+                transform: translate(calc(-50% + 60px), calc(-50% - 120px)) scale(1.1) rotateZ(360deg);
+                filter: drop-shadow(0 0 25px rgba(200, 16, 46, 0.9));
+            }
+            100% {
+                transform: translate(-50%, calc(-50% - 250px)) scale(0.7) rotateZ(540deg);
+                opacity: 0;
+                filter: drop-shadow(0 0 5px rgba(200, 16, 46, 0.2));
+            }
+        }
+
+        .love-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1999;
+            font-size: 2.5rem;
+            animation: heartFloat 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .love-glow {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1998;
+            border-radius: 50%;
+            animation: glowPulse 1.5s ease-out forwards;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                width: 80px;
+                height: 80px;
+                opacity: 0.8;
+                box-shadow: 0 0 20px 10px rgba(249, 194, 209, 0.6), 0 0 40px 20px rgba(200, 16, 46, 0.4);
+            }
+            100% {
+                width: 600px;
+                height: 600px;
+                opacity: 0;
+                box-shadow: 0 0 80px 40px rgba(249, 194, 209, 0), 0 0 150px 80px rgba(200, 16, 46, 0);
+            }
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 3%;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .beating-heart {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav a {
+                margin: 0;
+                font-size: 0.85rem;
+                padding: 8px 0;
+            }
+
+            .hero {
+                height: auto;
+                padding: 100px 5% 50px 5%;
+                margin-top: 0;
+            }
+
+            .glass-card {
+                padding: 2rem;
+                border-radius: 20px;
+            }
+
+            .saheb-line {
+                font-size: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 10px;
+            }
+
+            .stat-item {
+                padding: 12px;
+                border-radius: 15px;
+            }
+
+            .pill-btn {
+                padding: 0.8rem 2rem;
+                margin: 8px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.8rem 3%;
+            }
+
+            .logo {
+                font-size: 1rem;
+                gap: 5px;
+            }
+
+            .beating-heart {
+                font-size: 1.3rem;
+            }
+
+            .hero {
+                padding: 80px 3% 30px 3%;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
+            .saheb-line {
+                font-size: 1.3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .stat-item {
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            .pill-btn {
+                padding: 0.7rem 1.5rem;
+                margin: 5px;
+                font-size: 0.85rem;
+                width: 90%;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="heart-canvas"></canvas>
+    
+    <video class="video-bg" autoplay muted loop playsinline preload="auto">
+        <source src="https://drive.usercontent.google.com/download?export=download&confirm=t&id=1hMQFnQshOhlz_QMkQuDddZRQ0XS9H2yn" type="video/mp4">
+    </video>
+
+    <header>
+        <div class="logo">
+            <span class="beating-heart" onclick="showSecret()">❤️</span>
+            <span>SAHEB</span>
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav id="nav-menu">
+            <a href="pages/bio.html">Bio</a>
+            <a href="pages/week.html">Week</a>
+            <a href="pages/skills.html">Skills</a>
+            <a href="pages/connect.html">Connect</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="glass-card">
+            <h1 class="saheb-line" id="main-headline">
+                I am <span class="highlight">SAHEB</span> your next tripod to have perfect life on.
+            </h1>
+            <p id="visitor-greet" style="font-style: italic; color: var(--warm-gold); margin-bottom: 2rem;"></p>
+            
+            <div class="stats-grid">
+                <div class="stat-item"><span class="stat-label">Personality</span><div class="stat-val">Golden Retriever</div></div>
+                <div class="stat-item"><span class="stat-label">Handy Level</span><div class="stat-val">Local Fix-it Legend</div></div>
+                <div class="stat-item"><span class="stat-label">Top Pro</span><div class="stat-val">Clean UI & Zero Bugs</div></div>
+                <div class="stat-item"><span class="stat-label">Top Con</span><div class="stat-val">Hoodie Thief</div></div>
+            </div>
+
+            <button class="pill-btn" onclick="sendRose()">Send Virtual Rose 🌹</button>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close menu when link is clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('active');
+            });
+        });
+
+        // 1. Personalization Logic
+        window.onload = () => {
+            const visitor = prompt("Who is checking out Saheb today?", "Beautiful");
+            const crush = prompt("And who is the most gorgeous girl in college?", "You");
+            document.getElementById('visitor-greet').innerText = `Happy Valentine's Week, ${visitor}! From ${crush}'s favorite partner.`;
+        };
+
+        // 2. Heart Particle Background
+        const canvas = document.getElementById('heart-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Heart {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 10 + 5;
+                this.speed = Math.random() * 1 + 0.5;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#ff4d6d';
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size);
+                ctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y);
+                ctx.fill();
+            }
+            update() {
+                this.y -= this.speed;
+                if (this.y < -20) this.y = canvas.height + 20;
+            }
+        }
+
+        for (let i = 0; i < 60; i++) particles.push(new Heart());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // 3. Interaction Features
+        function sendRose() {
+            // Create romantic rose with bloom animation
+            const rose = document.createElement('div');
+            rose.className = 'romantic-rose';
+            rose.innerHTML = "🌹";
+            rose.style.top = '50%';
+            rose.style.left = '50%';
+            rose.style.fontSize = '5rem';
+            rose.style.animation = 'roseBloom 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards';
+            document.body.appendChild(rose);
+            
+            // Create expanding glow effect
+            const glow = document.createElement('div');
+            glow.className = 'love-glow';
+            glow.style.top = '50%';
+            glow.style.left = '50%';
+            glow.style.marginTop = '-40px';
+            glow.style.marginLeft = '-40px';
+            glow.style.background = 'radial-gradient(circle, rgba(249, 194, 209, 0.5), rgba(200, 16, 46, 0.2))';
+            document.body.appendChild(glow);
+            
+            // Create flush of love hearts in circular pattern
+            const heartEmojis = ['💖', '💕', '💗', '💓', '💝', '✨', '🌸'];
+            const numHearts = 16;
+            
+            for (let i = 0; i < numHearts; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'love-heart';
+                    heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                    heart.style.top = '50%';
+                    heart.style.left = '50%';
+                    
+                    // Circular burst pattern
+                    const angle = (i / numHearts) * Math.PI * 2;
+                    const distance = 180 + Math.random() * 80;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance - 120;
+                    
+                    heart.style.setProperty('--tx', tx + 'px');
+                    heart.style.setProperty('--ty', ty + 'px');
+                    heart.style.marginTop = '-20px';
+                    heart.style.marginLeft = '-20px';
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 2500);
+                }, i * 40);
+            }
+            
+            // Cleanup
+            setTimeout(() => rose.remove(), 3000);
+            setTimeout(() => glow.remove(), 1500);
+            
+            // Sweet message after animation
+            setTimeout(() => {
+                alert("💕 A flush of love has been sent to your heart! Every rose carries my deepest feelings for you. 🌹✨");
+            }, 600);
+        }
+
+        function showSecret() {
+            alert("Secret Message: Saheb thinks you're production-ready and beautiful.");
+        }
+
+        // 4. Cursor Trail
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.1) return;
+            const h = document.createElement('div');
+            h.className = 'trail-heart';
+            h.innerHTML = ["💖","✨","🌸","❤️"][Math.floor(Math.random()*4)];
+            h.style.left = e.pageX + 'px';
+            h.style.top = e.pageY + 'px';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 1500);
+        });
+    </script>
+</body>
+</html>

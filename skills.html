@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | SAHEB</title>
+    <style>
+        :root {
+            --deep-red: #C8102E;
+            --blush-pink: #F9C2D1;
+            --rich-purple: #7A3DAF;
+            --warm-gold: #D4AF37;
+            --cream: #F7F3F0;
+            --glass: rgba(255, 255, 255, 0.12);
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            scroll-behavior: smooth; 
+        }
+
+        body {
+            background-color: #0A0A0A;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        #heart-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            object-fit: cover;
+            filter: brightness(0.3) saturate(1.2);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--deep-red);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .beating-heart {
+            font-size: 2rem;
+            animation: heartbeat 1.2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--deep-red)); }
+            50% { transform: scale(1.2); filter: drop-shadow(0 0 20px var(--deep-red)); }
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover { 
+            color: var(--blush-pink); 
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- CONTENT --- */
+        .content {
+            margin-top: 80px;
+            padding: 50px 10%;
+            min-height: calc(100vh - 80px);
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            margin: 20px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 2rem;
+            color: var(--blush-pink);
+            text-shadow: 0 0 15px var(--deep-red);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 25px;
+            border-left: 5px solid var(--deep-red);
+        }
+
+        .skill-card h2 {
+            color: var(--warm-gold);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .skill-bar-container { 
+            margin: 20px 0; 
+            text-align: left; 
+        }
+        
+        .skill-name { 
+            font-size: 0.95rem; 
+            margin-bottom: 8px; 
+            display: block;
+            font-weight: 600;
+            color: var(--blush-pink);
+        }
+        
+        .heart-bar {
+            height: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .heart-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--deep-red), var(--blush-pink));
+            width: 0;
+            transition: width 2.5s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .confidence-level {
+            font-size: 0.8rem;
+            color: var(--warm-gold);
+            margin-top: 5px;
+            font-weight: 700;
+        }
+
+        .pill-btn {
+            background: var(--deep-red);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(200, 16, 46, 0.4);
+            margin: 10px;
+            font-size: 1rem;
+        }
+
+        .pill-btn:hover { 
+            transform: scale(1.05); 
+            filter: brightness(1.2); 
+        }
+
+        .trail-heart {
+            position: absolute;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatUp 1.5s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-150px) scale(2); opacity: 0; }
+        }
+
+        .summary {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin: 30px 0;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 3%;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            nav {
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .content {
+                padding: 100px 5% 50px 5%;
+                margin-top: 0;
+            }
+
+            .glass-card {
+                padding: 2rem;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .skill-card {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .skill-card h2 {
+                font-size: 1.3rem;
+            }
+
+            .pill-btn {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.8rem 3%;
+            }
+
+            .logo {
+                font-size: 1rem;
+                gap: 5px;
+            }
+
+            .beating-heart {
+                font-size: 1.3rem;
+            }
+
+            .content {
+                padding: 80px 3% 30px 3%;
+            }
+
+            .glass-card {
+                padding: 1.5rem;
+                border-radius: 15px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-card {
+                padding: 15px;
+                border-radius: 12px;
+            }
+
+            .skill-card h2 {
+                font-size: 1.1rem;
+            }
+
+            .skill-name {
+                font-size: 0.85rem;
+            }
+
+            .pill-btn {
+                width: 90%;
+                padding: 0.7rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .summary {
+                font-size: 0.95rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="heart-canvas"></canvas>
+    
+    <video class="video-bg" autoplay muted loop playsinline preload="auto">
+        <source src="https://drive.usercontent.google.com/download?export=download&confirm=t&id=1hMQFnQshOhlz_QMkQuDddZRQ0XS9H2yn" type="video/mp4">
+    </video>
+
+    <header>
+        <a href="../index.html" class="logo">
+            <span class="beating-heart">❤️</span>
+            <span>SAHEB</span>
+        </a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav id="nav-menu">
+            <a href="bio.html">Bio</a>
+            <a href="week.html">Week</a>
+            <a href="skills.html">Skills</a>
+            <a href="connect.html">Connect</a>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="glass-card">
+            <h1>⚙️ System Performance & Skills</h1>
+            <p style="text-align: center; font-style: italic; color: var(--warm-gold); margin-bottom: 2rem;">
+                What makes me the perfect partner? Check out my stats below...
+            </p>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h2>💙 Emotional Intelligence</h2>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Empathy & Understanding</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-1" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-1">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Active Listening</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-2" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-2">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Reliability Algorithm</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-3" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-3">0%</div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h2>🛠️ Technical Excellence</h2>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Problem Solving</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-4" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-4">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Fixing Things on Demand</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-5" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-5">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Clean Code (Life) Standards</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-6" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-6">0%</div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h2>💝 Romance & Connection</h2>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Romantic Gestures</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-7" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-7">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Commitment Strength</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-8" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-8">0%</div>
+                    </div>
+                    <div class="skill-bar-container">
+                        <span class="skill-name">Making You Feel Special</span>
+                        <div class="heart-bar"><div class="heart-fill" id="skill-9" style="width: 0%;"></div></div>
+                        <div class="confidence-level" id="conf-9">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <strong>Overall Compatibility Score:</strong> <span id="overall-score" style="color: var(--blush-pink); font-size: 1.3rem;">0%</span>
+                <p style="margin-top: 10px;">I'm built to be the perfect match for you. Every feature is optimized for your happiness.</p>
+            </div>
+
+            <center style="margin-top: 2rem;">
+                <button class="pill-btn" onclick="experienceMe()">Experience My Skills 💫</button>
+            </center>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('active');
+        }
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('active');
+            });
+        });
+
+        // Heart Particle Background
+        const canvas = document.getElementById('heart-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Heart {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 10 + 5;
+                this.speed = Math.random() * 1 + 0.5;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            draw() {
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = '#ff4d6d';
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size);
+                ctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y);
+                ctx.fill();
+            }
+            update() {
+                this.y -= this.speed;
+                if (this.y < -20) this.y = canvas.height + 20;
+            }
+        }
+
+        for (let i = 0; i < 60; i++) particles.push(new Heart());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Animate skill bars on page load
+        window.addEventListener('load', () => {
+            const skills = [
+                {id: 'skill-1', conf: 'conf-1', value: 100},
+                {id: 'skill-2', conf: 'conf-2', value: 98},
+                {id: 'skill-3', conf: 'conf-3', value: 100},
+                {id: 'skill-4', conf: 'conf-4', value: 95},
+                {id: 'skill-5', conf: 'conf-5', value: 95},
+                {id: 'skill-6', conf: 'conf-6', value: 99},
+                {id: 'skill-7', conf: 'conf-7', value: 96},
+                {id: 'skill-8', conf: 'conf-8', value: 100},
+                {id: 'skill-9', conf: 'conf-9', value: 97}
+            ];
+
+            let delay = 0;
+            skills.forEach(skill => {
+                setTimeout(() => {
+                    document.getElementById(skill.id).style.width = skill.value + '%';
+                    document.getElementById(skill.conf).innerText = skill.value + '%';
+                }, delay);
+                delay += 200;
+            });
+
+            // Calculate average
+            setTimeout(() => {
+                const avg = Math.round(skills.reduce((a, b) => a + b.value, 0) / skills.length);
+                document.getElementById('overall-score').innerText = avg + '%';
+            }, delay);
+        });
+
+        function experienceMe() {
+            alert("✨ Thank you for exploring my skills! I'm ready to show you why I'm the perfect partner for you. Let's make magic happen together! 💕");
+        }
+
+        // Cursor Trail
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.1) return;
+            const h = document.createElement('div');
+            h.className = 'trail-heart';
+            h.innerHTML = ["💖","✨","🌸","❤️"][Math.floor(Math.random()*4)];
+            h.style.left = e.pageX + 'px';
+            h.style.top = e.pageY + 'px';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 1500);
+        });
+    </script>
+</body>
+</html>
