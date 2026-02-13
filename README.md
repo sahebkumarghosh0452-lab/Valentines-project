@@ -38,7 +38,7 @@ A high-performance, visually stunning Valentine’s dating and matching web appl
 * **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 * **Animation:** [Framer Motion](https://www.framer.com/motion/) / [GSAP](https://greensock.com/gsap/)
 * **Icons:** [Lucide React](https://lucide.dev/)
-* **Database:** [MongoDB Atlas](https://www.mongodb.com/atlas) (For real-time user matching)
+
 
 ---
 
@@ -51,11 +51,6 @@ A high-performance, visually stunning Valentine’s dating and matching web appl
 2.  **Install Dependencies:**
     ```bash
     npm install
-    ```
-3.  **Set Up Environment Variables:**
-    Create a `.env.local` file and add your MongoDB URI:
-    ```env
-    MONGODB_URI=your_mongodb_connection_string
     ```
 4.  **Run Development Server:**
     ```bash
